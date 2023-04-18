@@ -16,4 +16,6 @@ Run the code: python code_switch.py to get the mixture data. You don't need to c
 
 ### Output
 
-for each call of the function, the output would be the list [Source_language_mixed, Target_language_mixed]
+```
+For each call of the function, the output would be the list [Source_language_mixed, Target_language_mixed]
+```
