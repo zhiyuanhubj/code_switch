@@ -1,6 +1,6 @@
 # code_switch
 
-## This code is for construction of code switch dataset in the paper()
+## This code is for construction of code switch dataset in the paper(Alternating Language Modeling for Cross-Lingual Pre-Training)
 
 ## Usage
 
