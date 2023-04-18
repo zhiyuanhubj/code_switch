@@ -10,6 +10,8 @@ Follow the guideline(http://codepothunter.github.io/2016/07/11/How-to-use-GIZA-f
 
 Load the parallel data for X(source language) and Y(target language)
 
+Set the parameter 'language' to indicate the source and target language you are processing now
+
 Run the code: python code_switch.py to get the mixture data. You don't need to change the parameters in this code.
 
 ```
