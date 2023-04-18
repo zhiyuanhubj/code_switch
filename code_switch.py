@@ -10,7 +10,7 @@ phrase_table = {}
 
 
 
-def code_switch_sequence(X, Y, phrase_table, max_phrase_len=5, max_substitution_ratio=0.3, num_samples=1,probability=0.4):
+def code_switch_sequence( X, Y, phrase_table,language, max_phrase_len=5, max_substitution_ratio=0.3, num_samples=1,probability=0.4):
     """
     Generates code switch sequences for a parallel sentence pair (X, Y) using a bilingual phrase table.
 
@@ -28,6 +28,8 @@ def code_switch_sequence(X, Y, phrase_table, max_phrase_len=5, max_substitution_
 
     
     code_switch_sequences = []
+    source_language = language.split('-')[0]
+    target_language = language.split('-')[1]
 
     for _ in range(num_samples):
         X_tokens = nltk.word_tokenize(X) ## should be replaced by tokenization
@@ -55,8 +57,13 @@ def code_switch_sequence(X, Y, phrase_table, max_phrase_len=5, max_substitution_
                     source_phrase = [k for k, v in phrase_table.items() if v == target_phrase][0]
                     Y_tokens[i] = source_phrase.split()[0]
                     num_substitution_words += 1
+        if source_language == 'chinese':
+            code_switch_sequence = [''.join(X_tokens), ' '.join(Y_tokens)]
+        elif target_language == 'chinese': 
+        	code_switch_sequence = [' '.join(X_tokens), ''.join(Y_tokens)]
+        else:
+        	code_switch_sequence = [' '.join(X_tokens), ' '.join(Y_tokens)]
 
-        code_switch_sequence = [X_tokens, Y_tokens]
         code_switch_sequences.append(code_switch_sequence)
 
     return code_switch_sequences
@@ -69,8 +76,9 @@ max_phrase_len = 5
 max_substitution_ratio = 0.3
 num_samples = 3
 probability=0.4
+language = 'english-french'
 
-code_switch_sequences = code_switch_sequence(X, Y, phrase_table, max_phrase_len, max_substitution_ratio, num_samples,probability)
+code_switch_sequences = code_switch_sequence(X, Y, phrase_table,language, max_phrase_len, max_substitution_ratio, num_samples,probability)
 print("Generated code switch sequences:")
 for i, sequence in enumerate(code_switch_sequences):
     print(f"Sequence {i + 1}: {sequence}")
